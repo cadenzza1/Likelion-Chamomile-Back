@@ -1,4 +1,3 @@
-from ctypes import addressof
 from django.db import models
 
 # Create your models here.
@@ -24,7 +23,7 @@ class Shop(models.Model):
     longitude = models.DecimalField(max_digits = 8, decimal_places = 3, null = True, blank = True)
     starttime = models.TimeField(null = True, blank = True)
     endtime = models.TimeField(null = True, blank = True)
-    
+
 class Category(models.Model): # 빵
     name = models.CharField(max_length = 30)
 
@@ -36,3 +35,7 @@ class Review(models.Model): # 손수 쓰는 리뷰
 
 class ReviewTag(models.Model): # 태그 누르는 리뷰
     color = models.CharField(max_length = 20)
+
+# class Love(models.Model):
+#     product = 
+#     user =
