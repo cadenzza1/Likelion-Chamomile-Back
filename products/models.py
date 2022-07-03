@@ -23,7 +23,7 @@ class Shop(models.Model):
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
 
 
-class Filter(models.Model): # 검색결과창에서 누르는 태그필터!
+class Tag(models.Model): # 검색결과창에서 누르는 태그필터!
     name = models.CharField(max_length = 30)
     color = models.CharField(max_length = 20)
 
@@ -44,7 +44,7 @@ class Product(models.Model): # 제품관련 테이블
     img = models.ImageField(blank=True, upload_to=f"product/img")
     description = models.CharField(max_length = 1000, default = '', blank = True)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
-    filter_set = models.ManyToManyField(Filter, blank=True, null=True)
+    tag_set = models.ManyToManyField(Tag, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     
     def __str__(self):

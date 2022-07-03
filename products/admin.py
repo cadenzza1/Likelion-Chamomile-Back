@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Product, Filter, Shop, Category, SubCategory, Review, Keyword, KeywordReview
+from .models import Product, Tag, Shop, Category, SubCategory, Review, Keyword, KeywordReview
 
 admin.site.register(Product)
-admin.site.register(Filter)
+admin.site.register(Tag)
 admin.site.register(Shop)
 admin.site.register(Category)
 admin.site.register(SubCategory)
