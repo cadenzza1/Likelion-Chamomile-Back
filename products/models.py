@@ -45,7 +45,7 @@ class Product(models.Model): # 제품관련 테이블
     description = models.CharField(max_length = 1000, default = '', blank = True)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     tag_set = models.ManyToManyField(Tag, blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    sub_category = models.ForeignKey(SubCategory, on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
         return self.name
