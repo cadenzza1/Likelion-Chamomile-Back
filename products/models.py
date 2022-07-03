@@ -1,5 +1,15 @@
+import os.path
+import uuid
+
 from django.db import models
 from django.contrib.auth import get_user_model
+
+
+def get_review_img_path(obj, fname):
+    return os.path.join(
+        'reviews',
+        obj.id,
+        f'{uuid.uuid4}_{fname}')
 
 
 class Shop(models.Model):
@@ -31,7 +41,7 @@ class Product(models.Model): # 제품관련 테이블
     name = models.CharField(max_length=50)
     likenum = models.IntegerField(default = 0, blank = True)
     price = models.IntegerField(default = 0)
-    # img = models.ImageField 나중에 합시다
+    img = models.ImageField(blank=True, upload_to=f"product/img")
     description = models.CharField(max_length = 1000, default = '', blank = True)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     filter_set = models.ManyToManyField(Filter, blank=True, null=True)
@@ -40,6 +50,7 @@ class Product(models.Model): # 제품관련 테이블
     def __str__(self):
         return self.name
 
+
 # 입력받을 때 사용자가 입력을 안 하면 blank, default 값이 있으면 Null true 는 없어야함 - 서로 모순
 # DB에 없어도 되는 정보인거면 null
 
@@ -47,6 +58,7 @@ class Product(models.Model): # 제품관련 테이블
 class Review(models.Model): # 손수 쓰는 리뷰
     content = models.CharField(max_length = 1000)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    img = models.ImageField(blank=True, upload_to=get_review_img_path)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
 
