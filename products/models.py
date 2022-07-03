@@ -1,12 +1,15 @@
 from django.db import models
 
 # Create your models here.
-class Product(models.Model):
+class Product(models.Model): # 제품관련 테이블
     name = models.CharField(max_length=50)
     likenum = models.IntegerField(default = 0, blank = True)
     price = models.IntegerField(default = 0)
     # img = models.ImageField 나중에 합시다
     description = models.CharField(max_length = 1000, default = '', blank = True)
+    
+    def __str__(self):
+        return self.name
 
 # 입력받을 때 사용자가 입력을 안 하면 blank, default 값이 있으면 Null true 는 없어야함 - 서로 모순
 # DB에 없어도 되는 정보인거면 null
@@ -33,7 +36,7 @@ class SubCategory(models.Model): # 소금빵
 class Review(models.Model): # 손수 쓰는 리뷰
     content = models.CharField(max_length = 1000)
 
-class ReviewTag(models.Model): # 태그 누르는 리뷰
+class TagReview(models.Model): # 태그 누르는 리뷰
     color = models.CharField(max_length = 20)
 
 # class Love(models.Model):
