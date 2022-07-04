@@ -59,6 +59,11 @@ class Product(models.Model): # 제품관련 테이블
     def __str__(self):
         return self.name
 
+    def get_img_url(self):
+        if not self.img:
+            return ""
+        return self.img.url
+
 
 # 입력받을 때 사용자가 입력을 안 하면 blank, default 값이 있으면 Null true 는 없어야함 - 서로 모순
 # DB에 없어도 되는 정보인거면 null
@@ -72,6 +77,12 @@ class Review(models.Model): # 손수 쓰는 리뷰
 
     def __str__(self):
         return self.name
+
+    def get_img_url(self):
+        if not self.img:
+            return ""
+        return self.img.url
+
 
 class Keyword(models.Model): # 키워드
     content = models.CharField(max_length = 20)
