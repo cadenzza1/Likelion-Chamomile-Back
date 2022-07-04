@@ -55,7 +55,7 @@ def get_product(request, id):
             "name" : product.name,
             "likenum" : product.likenum,
             "price" : product.price,
-            #"img" : product.img.url,
+            "img" : product.get_img_url(),
             "description" : product.description,
             "shop" : product.shop.name,
             "tag_set" : list(product.tag_set.values()),
