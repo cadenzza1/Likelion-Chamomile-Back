@@ -4,6 +4,9 @@ from django.http import HttpResponse, JsonResponse
 import json
 # Create your views here.
 
+def home(request):
+    return render(request,'home.html')
+    
 def get_product_all(request):
     if request.method == "GET":
         product_all = Product.objects.all()
