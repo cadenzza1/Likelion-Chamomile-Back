@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party
+    'storages',
+    # app
     'users',
     'products',
 ]
@@ -129,3 +132,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# S3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+
+AWS_S3_ACCESS_KEY_ID = 'AKIAWSLXGLPUXG4U6NM5'
+AWS_S3_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'chamomile-was-s3'
