@@ -1,15 +1,20 @@
+from unicodedata import name
 from products.models import Product
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 import json
+from django.views import View
+from .models import Category, Product
 # Create your views here.
 
 def home(request):
     return render(request,'home.html')
-    
+
 def get_product_all(request):
+    category_name = request.GET.get('name', None)
+    
     if request.method == "GET":
-        product_all = Product.objects.all()
+        product_all = Product.objects.filter(name__contains = category_name)
         product_json_all = []
 
         for product in product_all:
@@ -18,20 +23,29 @@ def get_product_all(request):
                 "name" : product.name,
                 "likenum" : product.likenum,
                 "price" : product.price,
-                "img" : product.img,
+                # "img" : product.img,
                 "description" : product.description,
-                "shop" : product.shop,
-                "tag_set" : product.tag_set,
-                "sub_category" : product.sub_category,
+                "shop" : product.shop.name,
+                "tag_set" : list(product.tag_set.values()),
+                "sub_category" : product.sub_category.name,
             }
             product_json_all.append(product_json)
 
-        return JsonResponse({
+        json_res = json.dumps(
+            {
             "status" : 200,
             "success" : True,
-            "message":"생성 성공",
+            "message": "생성 성공",
             "data" : product_json_all
-        })
+            },
+        ensure_ascii=False
+        )
+        
+        return HttpResponse(
+                json_res,
+                content_type=u"application/json; charset=utf-8",
+                status = 200,
+            )
 
 def get_product(request, id):
     if request.method == "GET":
@@ -41,7 +55,7 @@ def get_product(request, id):
             "name" : product.name,
             "likenum" : product.likenum,
             "price" : product.price,
-            #"img" : product.img.url,
+            "img" : product.get_img_url(),
             "description" : product.description,
             "shop" : product.shop.name,
             "tag_set" : list(product.tag_set.values()),
