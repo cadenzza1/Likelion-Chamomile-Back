@@ -22,20 +22,29 @@ class Shop(models.Model):
     endtime = models.TimeField(null = True, blank = True)
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return self.name
 
 class Tag(models.Model): # 검색결과창에서 누르는 태그필터!
     name = models.CharField(max_length = 30)
     color = models.CharField(max_length = 20)
 
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):  # 빵
     name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
 
 
 class SubCategory(models.Model):  # 소금빵
     name = models.CharField(max_length=30)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
 class Product(models.Model): # 제품관련 테이블
     name = models.CharField(max_length=50)
@@ -61,17 +70,26 @@ class Review(models.Model): # 손수 쓰는 리뷰
     img = models.ImageField(blank=True, upload_to=get_review_img_path)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
 class Keyword(models.Model): # 키워드
     content = models.CharField(max_length = 20)
     type = models.CharField(max_length = 20)
 
+    def __str__(self):
+        return self.name
 
 class KeywordReview(models.Model): # 키워드 누르는 리뷰
     keyword = models.ForeignKey(Keyword, on_delete=models.CASCADE)
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
 class Love(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
