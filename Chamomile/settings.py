@@ -145,5 +145,8 @@ AWS_S3_SECRET_ACCESS_KEY = 'uKFQhGGXAI5sVo1dUm7okIL8xkfUAGrN1+1OCKFG'
 AWS_STORAGE_BUCKET_NAME = 'chamomile-was-s3'
 
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8000'
-                         ,'http://localhost:8000']
+                         ,'http://localhost:8000'
+                         ,'https://api-chamomile.kro.kr'
+                         ,'http://api-chamomile.kro.kr'
+                         ]
 CORS_ALLOW_CREDENTIALS = True
