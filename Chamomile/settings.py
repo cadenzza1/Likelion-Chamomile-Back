@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     # app
     'users',
     'products',
+    'corsheaders', # CORS관련 추가
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',     # CORS 관련 추가
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Chamomile.urls'
@@ -140,3 +143,7 @@ AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related quer
 AWS_S3_ACCESS_KEY_ID = 'AKIAWSLXGLPUXG4U6NM5'
 AWS_S3_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'chamomile-was-s3'
+
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8000'
+                         ,'http://localhost:8000']
+CORS_ALLOW_CREDENTIALS = True
