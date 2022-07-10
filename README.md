@@ -4,6 +4,7 @@
 팀 카모마일 Backend Part
 
 https://www.youtube.com/watch?v=cC9LGrZ3khg - 최종 아이디어톤 영상
+https://seo-hyeon.notion.site/_-60af57dbb44442dca6f7d9eea44f8da9 - 노션 페이지
 
 프론트엔드 Github : https://github.com/d0422/Chamomile<br/>
 PM : 고민서<br/>
