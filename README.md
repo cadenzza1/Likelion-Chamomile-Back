@@ -3,7 +3,7 @@
 멋쟁이 사자처럼 10기 아이디어톤
 팀 카모마일 Backend Part
 
-https://www.youtube.com/watch?v=cC9LGrZ3khg - 최종 아이디어톤 영상
+https://www.youtube.com/watch?v=cC9LGrZ3khg - 최종 아이디어톤 영상<br/>
 https://seo-hyeon.notion.site/_-60af57dbb44442dca6f7d9eea44f8da9 - 노션 페이지
 
 프론트엔드 Github : https://github.com/d0422/Chamomile<br/>
