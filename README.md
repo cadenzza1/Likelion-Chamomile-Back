@@ -1,6 +1,6 @@
 # Likelion-Chamomile-Back
 
-멋쟁이 사자처럼 10기 아이디어톤
+멋쟁이 사자처럼 10기
 팀 카모마일 Backend Part
 
 https://www.youtube.com/watch?v=cC9LGrZ3khg - 최종 아이디어톤 영상<br/>
