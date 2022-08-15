@@ -21,7 +21,7 @@ class Shop(models.Model):
     starttime = models.TimeField(null = True, blank = True)
     endtime = models.TimeField(null = True, blank = True)
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
-
+    
     def __str__(self):
         return self.name
 
@@ -104,3 +104,6 @@ class Love(models.Model):
 
     def __str__(self):
         return self.name
+
+class Mingyu(models.Model):
+    
