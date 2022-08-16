@@ -125,3 +125,56 @@ def get_shop_info(request,product_id):
                 content_type=u"application/json; charset=utf-8",
                 status = 200,
             )
+
+# 비회원 상세페이지 View
+class ProductPublicView(View):
+    def get(self, request, product_id):
+        if not product_id.isdigit():
+            return JsonResponse({"ERROR": "NEED_NUMBER"}, status=400)
+
+        if not Product.objects.filter(id=product_id).exists():
+            return JsonResponse({"ERROR": "DOES_NOT_EXIST"}, status=400)
+
+        product = Product.objects.get(id=product_id)
+
+        item = [{
+            "id"           : product.id,
+            "name"         : product.name,
+            "price"        : product.price,
+            "thumbnail"    : product.thumbnail,
+            "brand"        : product.brand.name,
+            "type"         : product.type.name,
+            "detail_image" : product.detail_image,
+            "element"      : product.element,
+            "weight"       : product.weight,
+            "liked"        : False
+        }]
+
+        return JsonResponse({"item": item}, status=200)
+
+# 회원 상세페이지 View
+class ProductPrivateView(View):
+    # @login_decorator
+    def get(self, request, product_id):
+        if not product_id.isdigit():
+            return JsonResponse({"ERROR": "NEED_NUMBER"}, status=400)
+
+        if not Product.objects.filter(id=product_id).exists():
+            return JsonResponse({"ERROR": "DOES_NOT_EXIST"}, status=400)
+
+        product = Product.objects.get(id=product_id)
+
+        item = [{
+            "id"          : product.id,
+            "name"        : product.name,
+            "price"       : product.price,
+            "thumbnail"   : product.thumbnail,
+            "brand"       : product.brand.name,
+            "type"        : product.type.name,
+            "detail_image": product.detail_image,
+            "element"     : product.element,
+            "weight"      : product.weight,
+            "liked"       : product.like_set.filter(member_id=request.member.id).exists()
+        }]
+
+        return JsonResponse({"item": item}, status=200)
